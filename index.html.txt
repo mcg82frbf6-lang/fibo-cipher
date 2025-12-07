@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Fibonacci Cipher</title>
+<style>
+    body { font-family: sans-serif; padding: 20px; background: #f0f0f0; }
+    textarea { width: 100%; height: 90px; padding: 10px; font-size: 17px; }
+    button { width: 100%; padding: 12px; font-size: 18px; margin-top: 12px; background: #333; color: white; border: none; border-radius: 4px; }
+    #out { background: white; padding: 15px; border-radius: 6px; font-size: 18px; margin-top: 15px; }
+</style>
+</head>
+<body>
+
+<h2>🔢 フィボナッチ暗号化アプリ</h2>
+<p>A〜Z → フィボナッチ数に変換</p>
+
+<textarea id="text" placeholder="文字を入力"></textarea>
+<button onclick="run()">変換</button>
+
+<div id="out"></div>
+
+<script>
+const fib = [
+    1,1,2,3,5,8,13,21,34,55,
+    89,144,233,377,610,987,1597,
+    2584,4181,6765,10946,17711,
+    28657,46368,75025,121393
+];
+
+function run() {
+    const t = document.getElementById("text").value;
+    let output = [];
+
+    for (let ch of t) {
+        if (/[a-zA-Z]/.test(ch)) {
+            let idx = ch.toUpperCase().charCodeAt(0) - 65;
+            output.push(fib[idx]);
+        }
+    }
+
+    document.getElementById("out").innerHTML =
+        "<b>結果：</b><br>" + output.join(", ");
+}
+</script>
+
+</body>
+</html>
